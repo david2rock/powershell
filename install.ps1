@@ -22,7 +22,7 @@ function Install-ModuleIfNotExists {
     }
 }
 
-echo ". '$HOME\.config\powershell\user_profile.ps1'" >  $PROFILE.CurrentUserCurrentHost
+Write-Output ". '$HOME\.config\powershell\user_profile.ps1'" >  $PROFILE.CurrentUserCurrentHost
 
 Write-Output "Installing Oh My Posh..."
 winget install JanDeDobbeleer.OhMyPosh -s winget
