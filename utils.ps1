@@ -66,9 +66,10 @@ function update {
   scoop status
   Write-Output "`nUpdating oh-my-posh..."
   oh-my-posh upgrade
+  winget upgrade --all --include-unknown
 }
 function weather {
-  curl https://wttr.in/gurgaon
+  curl https://wttr.in/
 }
 
 # -------- shutdown / restart ---------
