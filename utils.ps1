@@ -92,26 +92,30 @@ function notes {
 
 # ----------------- unzip -----------------
 function uz {
-    param (
-        [string]$sourcePath,
-        [string]$destinationPath
-    )
+  param (
+      [string]$sourcePath,
+      [string]$destinationPath
+  )
 
-    if (-Not (Test-Path $sourcePath)) {
-        Write-Error "Source file does not exist: $sourcePath"
-        return
-    }
+  if (-Not (Test-Path -Path $sourcePath)) {
+      Write-Error "Source file does not exist: $sourcePath"
+      return
+  }
 
-    if (-Not (Test-Path $destinationPath)) {
-        New-Item -Path $destinationPath -ItemType Directory -Force | Out-Null
-    }
+  if (-not $destinationPath) {
+      $destinationPath = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
+  }
 
-    try {
-        Expand-Archive -Path $sourcePath -DestinationPath $destinationPath -Force
-        Write-Output "Successfully unzipped $sourcePath to $destinationPath"
-    } catch {
-        Write-Error "Failed to unzip $sourcePath to $destinationPath: $_"
-    }
+  if (-Not (Test-Path -Path $destinationPath)) {
+      New-Item -Path $destinationPath -ItemType Directory -Force | Out-Null
+  }
+
+  try {
+      Expand-Archive -Path $sourcePath -DestinationPath $destinationPath -Force
+      Write-Output "Successfully unzipped $sourcePath to $destinationPath"
+  } catch {
+      Write-Error "Failed to unzip $sourcePath to ${destinationPath}: $_"
+  }
 }
 
 # ---------------rm item force & Recurse -------
