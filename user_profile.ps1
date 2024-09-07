@@ -36,7 +36,6 @@ Set-PSReadLineOption -BellStyle None
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
 
 # --------- Fzf ---------
@@ -54,4 +53,4 @@ function cus {
     nvim $HOME\.config\powershell\custom.ps1    
 }
 . $HOME\.config\powershell\utils.ps1
-. $HOME\.config\powershell\custom.ps1 # create a custom.ps1 file by this command 'cus'.
+. $HOME\.config\powershell\custom.ps1

@@ -43,4 +43,6 @@ Expand-Archive -Path $destination -DestinationPath "$env:USERPROFILE\AppData\Loc
 
 Remove-Item -Path $destination -Force
 
+New-Item "custom.ps1"
+
 Write-Output "Installation completed. Please restart your terminal or reload your profile to use the new modules and tools."

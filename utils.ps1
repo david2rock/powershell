@@ -90,14 +90,28 @@ function notes {
   Start-Process notepads $args
 }
 
-# ------------------- Teams startup with fix -------------
-function teams {
-  Start-Process ms-teams
-}
-
 # ----------------- unzip -----------------
 function uz {
-  7z x -y $args
+    param (
+        [string]$sourcePath,
+        [string]$destinationPath
+    )
+
+    if (-Not (Test-Path $sourcePath)) {
+        Write-Error "Source file does not exist: $sourcePath"
+        return
+    }
+
+    if (-Not (Test-Path $destinationPath)) {
+        New-Item -Path $destinationPath -ItemType Directory -Force | Out-Null
+    }
+
+    try {
+        Expand-Archive -Path $sourcePath -DestinationPath $destinationPath -Force
+        Write-Output "Successfully unzipped $sourcePath to $destinationPath"
+    } catch {
+        Write-Error "Failed to unzip $sourcePath to $destinationPath: $_"
+    }
 }
 
 # ---------------rm item force & Recurse -------
@@ -113,6 +127,7 @@ function theme {
 # ------------- Activate python .venv -------------
 function act {
   .\.venv\Scripts\activate
+  theme "kali"
 }
 
 # ---- main.py -------

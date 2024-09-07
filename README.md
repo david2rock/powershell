@@ -13,13 +13,13 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the Repository:**
 
-   ```pwsh
-   git clone https://github.com/david2rock/powershell.git $HOME/.config/
+   ```sh
+   git clone https://github.com/david2rock/powershell.git $HOME/.config/powershell
    ```
 
 2. **Navigate to the Repository:**
 
-    ```pwsh
+    ```sh
     cd $HOME/.config/powershell
     ```
 
@@ -27,7 +27,7 @@ Before you begin, ensure you have the following installed:
 
     This script will install the necessary modules and tools.
 
-    ```pwsh
+    ```sh
     ./install.ps1
     ```
 
@@ -36,10 +36,11 @@ Before you begin, ensure you have the following installed:
     - Install Oh My Posh for a customized prompt.
     - Install and configure fzf, Terminal-Icons, and other PowerShell modules.
     - Set up additional utilities and aliases for an enhanced shell experience.
+    - Create a `custom.ps1` file for your custom configrations.
 
 4. **Reload Your PowerShell Profile:**
 
-    ```pwsh
+    ```sh
     . $PROFILE
     ```
 
@@ -120,7 +121,7 @@ This setup includes several commands and aliases to enhance your workflow. They 
 
 ### File Management
 
-- `uz <file_to_unzip>`: Unzips a file using 7-Zip.
+- `uz <file_to_unzip>`: Unzips a file.
 
   Examples:
 
