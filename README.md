@@ -1,13 +1,14 @@
-# PowerShell Configuration and Utilities
+# PowerShell Configuration, Utilities and Aliases
 
-This repository contains a customized PowerShell environment with various utilities and aliases to improve productivity. Follow the instructions below to set up and start using the provided scripts.
+This repository contains a customized PowerShell environment with various utilities and aliases to improve productivity.<br/>Follow the instructions below to set up and start using the provided scripts.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
 - **Git**: Used for cloning the repository.
-- **Neovim (nvim)**: For editing configuration files.
+- **Neovim (nvim)**: (Optional) For editing configuration files.
+- **Nerd Fonts**: For better visibility; download a nerd [font](https://github.com/ryanoasis/nerd-fonts) as per your choice.
 
 ## Installation
 
@@ -32,11 +33,13 @@ Before you begin, ensure you have the following installed:
     ```
 
     This will:
-    - Add the configuration to CurrentUserCurrentHost.
+    - Install Windows Terminal if not already installed.
+    - Install Windows Powershell if not already installed.
     - Install Oh My Posh for a customized prompt.
     - Install and configure fzf, Terminal-Icons, and other PowerShell modules.
+    - Create a `custom.ps1` file for your custom configurations or overrides.
+    - Add the configurations to CurrentUserCurrentHost.
     - Set up additional utilities and aliases for an enhanced shell experience.
-    - Create a `custom.ps1` file for your custom configrations.
 
 4. **Reload Your PowerShell Profile:**
 
@@ -49,38 +52,50 @@ Before you begin, ensure you have the following installed:
 You can customize the environment further by editing the following files:
 
 - **`user_profile.ps1`**: Contains the main configuration, including prompt settings, aliases, and more.
-- **`utils.ps1`**: Houses additional utility functions such as brave, chrome, weather, etc.
-- **`custom.ps1`**: Add your custom functions or overrides here.
+- **`utils.ps1`**: Houses additional utility functions such as pkill, which, uz, etc.
+- **`custom.ps1`**: **Add your custom functions or overrides here.**
 
-To edit these files, you can use the following commands:
-
-- Edit the main profile:
-
-  ```pwsh
-  pwshrc
-  ```
-
-- Edit the utilities script:
-
-  ```pwsh
-  pwshut
-  ```
-
-- Edit the custom script:
+To edit the `custom.ps1` files, you can use the following command:
 
   ```pwsh
   cus
   ```
 
+  This will open the file in neovim.
+
 ## Available Commands and Aliases
 
-This setup includes several commands and aliases to enhance your workflow. They are categorized below for easy reference.
+This setup includes several commands and aliases to enhance your workflow.<br/> They are categorized below for easy reference.
 
 ### Navigation and File Operations
 
 - `ll`: Enhanced ls command with color, icons, and Git integration.
 - `rmf`: Remove files or directories forcefully.
-- `touch`: Create a new file
+- `touch`: Create a new file.
+
+### Git Aliases (New in 0.3.0)
+
+This version introduces new Git aliases to simplify Git operations:
+
+- `gcl` Clone GitHub repositories (`git clone repo`).
+- `gst`: Shows the status of the working directory (`git status`).
+- `ga`: Adds changes to staging area (`git add`).
+- `gaa`: Adds all changes to the staging area (`git add --all`).
+- `gcmsg`: Commits with a message (`git commit --message`).
+- `gpush`: Pushes changes to the origin repository, with improved functionality to allow specifying remote and branch.
+- `gf`: Fetches changes from the origin remote (`git fetch origin`).
+- `gl`: Pulls changes from the remote repository (`git pull`).
+- `gb`: Lists or creates branches (`git branch`).
+- `gbD`: Forces deletion of a branch (`git branch --delete --force`).
+- `gba`: Shows all branches (`git branch --all`).
+- `gbd`: Deletes a branch (`git branch --delete`).
+- `gcb`: Creates and switches to a new branch (`git checkout -b`).
+- `gco`: Switches branches or restores working tree files (`git checkout`).
+- `glgga`: Shows the Git log with graph, decorate, and all branches (`git log --graph --decorate --all`).
+- `gm`: Merges branches (`git merge`).
+- `gms`: Squash merges branches (`git merge --squash`).
+- `gra`: Adds a remote repository (`git remote add origin`).
+- `gwch`: Shows changes in the working directory (`git whatchanged`).
 
 ### Browser Shortcuts
 
@@ -117,15 +132,15 @@ This setup includes several commands and aliases to enhance your workflow. They 
   Quickly launch frequently used applications.
 
 - `note`: Launches the Microsoft Sticky Notes application.
-- `notes <optional_file_path>`: Opens Notepads for quick note-taking; notepads [link](https://apps.microsoft.com/detail/9nhl4nsc67wm) highly recommended.
+- `notes <optional_file_path>`: Opens Notepads for quick note-taking; ([notepads](https://apps.microsoft.com/detail/9nhl4nsc67wm) alternative to Notepad).
 
 ### File Management
 
-- `uz <file_to_unzip>`: Unzips a file.
+- `uz <file_to_unzip>`: Extracts the files in current folder.
 
   Examples:
 
-- `uz <file_path> -o"output_folder`: Extracts the files in given output folder.
+- `uz <file_path> <output_folder>`: Extracts the files in given output folder.
 
 ### Prompt Customization
 
@@ -136,6 +151,12 @@ This setup includes several commands and aliases to enhance your workflow. They 
 ### Other Utilities
 
 - `weather`: Get the weather report for your location based on IP address.
+
+> Use help command on any function above to know more about that.
+>
+>```sh
+>  man <command>
+>  ```
 
 ## Contributing
 

@@ -1,6 +1,6 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
-$fzf_version = "0.54.3"
+$fzf_version = "0.55.0"
 
 function Test-ModuleInstalled {
     param (
@@ -22,9 +22,13 @@ function Install-ModuleIfNotExists {
     }
 }
 
-Write-Output ". '$HOME\.config\powershell\user_profile.ps1'" >  $PROFILE.CurrentUserCurrentHost
+Write-Output "Installing/Updating Windows Terminal..."
+winget install Microsoft.WindowsTerminal -s winget
 
-Write-Output "Installing Oh My Posh..."
+Write-Output "Installing/Updating Powershell ..."
+winget install Microsoft.PowerShell -s winget
+
+Write-Output "Installing Oh My Posh ..."
 winget install JanDeDobbeleer.OhMyPosh -s winget
 
 Install-ModuleIfNotExists -ModuleName "Terminal-Icons"
@@ -41,8 +45,20 @@ Invoke-WebRequest -Uri $fzfUrl -OutFile $destination
 Write-Output "Extracting fzf.exe..."
 Expand-Archive -Path $destination -DestinationPath "$env:USERPROFILE\AppData\Local\Programs\oh-my-posh\bin" -Force
 
+Write-Output "Removing $destination ..."
 Remove-Item -Path $destination -Force
 
-New-Item "custom.ps1"
+Write-Output "Creating custom.ps1 ..."
+$custom_path = "$HOME\.config\powershell\custom.ps1"
+
+if (Test-Path $custom_path) {
+    Write-Output "custom.ps1 already exists ..."
+} else {
+    New-Item -Path $custom_path -ItemType File
+    Write-Output "custom.ps1 created ..."
+}
+
+Write-Output "Adding configrations to CurrentUserCurrentHost ..."
+Write-Output ". '$HOME\.config\powershell\user_profile.ps1'" >  $PROFILE.CurrentUserCurrentHost
 
 Write-Output "Installation completed. Please restart your terminal or reload your profile to use the new modules and tools."
