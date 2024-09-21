@@ -240,6 +240,31 @@ function rmf {
   Remove-Item $path -Recurse -Force
 }
 
+# ----------theme-------
+function theme {
+  <#
+  .SYNOPSIS
+  Initializes a PowerShell theme using Oh My Posh with a specified configuration file.
+
+  .DESCRIPTION
+  The `theme` function allows you to set the visual theme of your PowerShell prompt by initializing Oh My Posh with a specific configuration file. The function constructs the path to the theme configuration file based on the environment variable `POSH_THEMES_PATH` and the provided theme name. Once initialized, it applies the theme to the current PowerShell session.
+
+  .PARAMETER args
+  The name of the theme (without the .omp.json extension) that you wish to apply. This name will be appended to the `POSH_THEMES_PATH` to locate the corresponding configuration file.
+
+  .EXAMPLE
+  theme mytheme
+  To set the theme to 'mytheme', you would call the above
+  This would look for the configuration file at: $env:POSH_THEMES_PATH\mytheme.omp.json and apply the theme.
+  #>
+  param (
+    [Parameter(Mandatory=$true)]
+    [string]
+    $Name
+  )
+  oh-my-posh.exe init pwsh --config $env:POSH_THEMES_PATH\$Name.omp.json | Invoke-Expression
+}
+
 # ------------- Activate Python .venv -------------
 function act {
   <#
