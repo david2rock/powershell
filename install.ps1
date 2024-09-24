@@ -59,6 +59,6 @@ if (Test-Path $custom_path) {
 }
 
 Write-Output "Adding configrations to CurrentUserCurrentHost ..."
-Write-Output ". '$HOME\.config\powershell\user_profile.ps1'" >  $PROFILE.CurrentUserCurrentHost
+Write-Output '. "$HOME\.config\powershell\user_profile.ps1"' >  $PROFILE.CurrentUserAllHosts
 
 Write-Output "Installation completed. Please restart your terminal or reload your profile to use the new modules and tools."
