@@ -1,11 +1,11 @@
 # --------- utilites ---------
 function ll {
-  eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --color-scale-mode gradient --no-permissions $args
+    eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --color-scale-mode gradient --no-permissions $args
 }
 
 # --------- Brave ---------
 function brave {
-  <#
+    <#
   .SYNOPSIS
   Opens Brave browser with an optional search query.
   .PARAMETER s
@@ -22,27 +22,27 @@ function brave {
   brave github.com
   This will open github.com in Brave browser without any search.
   #>
-  param (
-    [switch]$s,
-    [string]$query
-  )
+    param (
+        [switch]$s,
+        [string]$query
+    )
 
-  if ($s -and $query) {
-    $formattedQuery = $query -replace ' ', '+'
-    $searchUrl = "https://search.brave.com/search?q=$formattedQuery"
-    Start-Process "brave.exe" -ArgumentList $searchUrl
-  }
-  elseif ($query) {
-    Start-Process "brave.exe" -ArgumentList $query
-  }
-  else {
-    Start-Process "brave.exe"
-  }
+    if ($s -and $query) {
+        $formattedQuery = $query -replace ' ', '+'
+        $searchUrl = "https://search.brave.com/search?q=$formattedQuery"
+        Start-Process "brave.exe" -ArgumentList $searchUrl
+    }
+    elseif ($query) {
+        Start-Process "brave.exe" -ArgumentList $query
+    }
+    else {
+        Start-Process "brave.exe"
+    }
 }
 
 # --------- Chrome ---------
 function chrome {
-  <#
+    <#
   .SYNOPSIS
   Opens Google Chrome with an optional search query.
   .PARAMETER s
@@ -56,26 +56,26 @@ function chrome {
   chrome
   This will open the Chrome browser without any search.
   #>
-  param (
-    [switch]$s,
-    [string]$query
-  )
+    param (
+        [switch]$s,
+        [string]$query
+    )
 
-  if ($s -and $query) {
-    $formattedQuery = $query -replace ' ', '+'
-    $searchUrl = "https://www.google.com/search?q=$formattedQuery"
-    Start-Process "chrome.exe" -ArgumentList $searchUrl
-  }
-  elseif ($query) {
-    Start-Process "chrome.exe" -ArgumentList $query
-  }
-  else {
-    Start-Process "chrome.exe"
-  }
+    if ($s -and $query) {
+        $formattedQuery = $query -replace ' ', '+'
+        $searchUrl = "https://www.google.com/search?q=$formattedQuery"
+        Start-Process "chrome.exe" -ArgumentList $searchUrl
+    }
+    elseif ($query) {
+        Start-Process "chrome.exe" -ArgumentList $query
+    }
+    else {
+        Start-Process "chrome.exe"
+    }
 }
 
 function pkill {
-  <#
+    <#
   .SYNOPSIS
     Terminates a process by its name.
   .PARAMETER Name
@@ -87,13 +87,13 @@ function pkill {
     pkill code
     This will stop all running VS Code processes.
   #>
-  param (
-    [Parameter(Mandatory=$true)][string]$Name
-  )
-  Get-Process $Name -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
+    param (
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+    Get-Process $Name -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
 }
 function which {
-  <#
+    <#
   .SYNOPSIS
     Finds the location of a command or cmdlet.
   .PARAMETER Name
@@ -105,62 +105,62 @@ function which {
     which git
     This will display the path of the Git executable.
   #>
-  param (
-    [Parameter(Mandatory=$true)]
-    [string]$Name
-  )
-  try {
-    Get-Command $Name -ErrorAction Stop
-  }
-  catch {
-    Write-Error "$Name Command not found."
-  }
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Name
+    )
+    try {
+        Get-Command $Name -ErrorAction Stop
+    }
+    catch {
+        Write-Error "$Name Command not found."
+    }
 }
 
 function update {
-  Write-Output "Updating Python..."
-  python.exe -m pip install --upgrade pip
-  scoop update
-  scoop cleanup *
-  scoop cache rm *
-  scoop status
-  Write-Output "`nUpdating oh-my-posh..."
-  oh-my-posh upgrade
-  winget upgrade --all --include-unknown
+    Write-Output "Updating Python..."
+    python.exe -m pip install --upgrade pip
+    scoop update
+    scoop cleanup *
+    scoop cache rm *
+    scoop status
+    Write-Output "`nUpdating oh-my-posh..."
+    oh-my-posh upgrade
+    winget upgrade --all --include-unknown
 }
 function weather {
-  curl https://wttr.in/
+    curl https://wttr.in/
 }
 
 # -------- shutdown / restart ---------
 function restart {
-  <#
+    <#
   .SYNOPSIS
     Restarts the system immediately.
   #>
-  shutdown -r -t 0
+    shutdown -r -t 0
 }
 
 function quit {
-  <#
+    <#
   .SYNOPSIS
     Shuts down the system immediately.
   #>
-  shutdown -s -t 0
+    shutdown -s -t 0
 }
 
 # ----------- Sticky notes --------
 function note {
-  <#
+    <#
   .SYNOPSIS
     Opens the Microsoft Sticky Notes application.
   #>
-  Start-Process "explorer.exe" "shell:appsFolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App"
+    Start-Process "explorer.exe" "shell:appsFolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App"
 }
 
 # ------- Notepads -----------
 function notes {
-  <#
+    <#
   .SYNOPSIS
     Opens a file in Notepads, a text editor.
   .PARAMETER filePath
@@ -172,15 +172,15 @@ function notes {
     Notepads must be installed. Download it from the Microsoft Store if not available.
     Link: https://apps.microsoft.com/detail/9nhl4nsc67wm
   #>
-  param (
-    [string]$filePath
-  )
-  Start-Process notepads $filePath
+    param (
+        [string]$filePath
+    )
+    Start-Process notepads $filePath
 }
 
 # ----------------- Unzip -----------------
 function uz {
-  <#
+    <#
   .SYNOPSIS
     Unzips a compressed file to a destination directory.
   .PARAMETER sourcePath
@@ -194,36 +194,37 @@ function uz {
     uz "C:\example\file.zip" "C:\output"
     This will unzip the file to the "output" directory.
   #>
-  param (
-    [Parameter(Mandatory=$true)]
-    [string]$sourcePath,
-    [string]$destinationPath
-  )
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$sourcePath,
+        [string]$destinationPath
+    )
 
-  if (-Not (Test-Path -Path $sourcePath)) {
-    Write-Error "Source file does not exist: $sourcePath"
-    return
-  }
+    if (-Not (Test-Path -Path $sourcePath)) {
+        Write-Error "Source file does not exist: $sourcePath"
+        return
+    }
 
-  if (-not $destinationPath) {
-    $destinationPath = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
-  }
+    if (-not $destinationPath) {
+        $destinationPath = [System.IO.Path]::GetFileNameWithoutExtension($sourcePath)
+    }
 
-  if (-Not (Test-Path -Path $destinationPath)) {
-    New-Item -Path $destinationPath -ItemType Directory -Force | Out-Null
-  }
+    if (-Not (Test-Path -Path $destinationPath)) {
+        New-Item -Path $destinationPath -ItemType Directory -Force | Out-Null
+    }
 
-  try {
-    Expand-Archive -Path $sourcePath -DestinationPath $destinationPath -Force
-    Write-Output "Successfully unzipped $sourcePath to $destinationPath"
-  } catch {
-    Write-Error "Failed to unzip $sourcePath to ${destinationPath}: $_"
-  }
+    try {
+        Expand-Archive -Path $sourcePath -DestinationPath $destinationPath -Force
+        Write-Output "Successfully unzipped $sourcePath to $destinationPath"
+    }
+    catch {
+        Write-Error "Failed to unzip $sourcePath to ${destinationPath}: $_"
+    }
 }
 
 # --------------- Remove Item Force & Recurse -------
 function rmf {
-  <#
+    <#
   .SYNOPSIS
     Removes an item (file/folder) forcefully with recursion.
   .PARAMETER path
@@ -232,17 +233,17 @@ function rmf {
     rmf "C:\example\folder"
     This will remove the specified folder and its contents.
   #>
-  param (
-      [Parameter(Mandatory=$true)]
-      [string]
-      $path
-  )
-  Remove-Item $path -Recurse -Force
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $path
+    )
+    Remove-Item $path -Recurse -Force
 }
 
 # ----------theme-------
 function theme {
-  <#
+    <#
   .SYNOPSIS
   Initializes a PowerShell theme using Oh My Posh with a specified configuration file.
 
@@ -257,17 +258,17 @@ function theme {
   To set the theme to 'mytheme', you would call the above
   This would look for the configuration file at: $env:POSH_THEMES_PATH\mytheme.omp.json and apply the theme.
   #>
-  param (
-    [Parameter(Mandatory=$true)]
-    [string]
-    $Name
-  )
-  oh-my-posh.exe init pwsh --config $env:POSH_THEMES_PATH\$Name.omp.json | Invoke-Expression
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Name
+    )
+    oh-my-posh.exe init pwsh --config $env:POSH_THEMES_PATH\$Name.omp.json | Invoke-Expression
 }
 
 # ------------- Activate Python .venv -------------
 function act {
-  <#
+    <#
   .SYNOPSIS
     Activates the Python virtual environment and sets the terminal theme.
   .EXAMPLE
@@ -276,18 +277,141 @@ function act {
   .NOTES
     Make sure to run it the project directory.
   #>
-  .\.venv\Scripts\activate
-  theme "kali"
+    .\.venv\Scripts\activate
+    theme "kali"
 }
 
 # ---- main.py -------
 function main {
-  <#
+    <#
   .SYNOPSIS
     Runs the `main.py` Python script.
   .EXAMPLE
     main
     This will execute `main.py` using Python in current directory.
   #>
-  python.exe main.py
+    python.exe main.py
+}
+
+function test {
+    <#
+  .SYNOPSIS
+    Runs the `test.py` Python script.
+  .EXAMPLE
+    test
+    This will execute `test.py` using Python in current directory.
+  #>
+    python test.py
+}
+
+# ----------- Hide ------------
+function hide {
+    <#
+  .SYNOPSIS
+  Hides a file or directory.
+  .PARAMETER Path
+  Path of the file(s)/directory(s) to hide.
+  .EXAMPLE
+  hide "C:\example\file.txt"
+  #>
+    param (
+        # Path of the file[s]/directory[s] to hide.
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    attrib +s +h $Path
+}
+
+# ----------- Show ------------
+function show {
+    <#
+  .SYNOPSIS
+  Unhides a file or directory.
+  .PARAMETER Path
+  Path of the file(s)/directory(s) to show.
+  .EXAMPLE
+  show "C:\example\file.txt"
+  #>
+    param (
+        # Path of the file[s]/directory[s] to show.
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    attrib -s -h $Path
+}
+
+function rmc {
+    <#
+  .SYNOPSIS
+  Deletes `__pycache__` folders recursively in a given path.
+  .PARAMETER Path
+  Path to delete `__pycache__` folders from.
+  .EXAMPLE
+  rmc "C:\example\project"
+  #>
+    param (
+        # Path of the directory from where you want to delete the pycache folders.
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    Get-ChildItem -Path $Path -Directory -Recurse | Where-Object { $_.Name -eq "__pycache__" } | ForEach-Object {
+        Write-Host "Deleting:" $_.FullName
+        Remove-Item -Path $_.FullName -Recurse -Force
+    }
+}
+function mdc {
+    <#
+  .SYNOPSIS
+  Creates a directory and navigates into it.
+  .PARAMETER Path
+  Path of the directory to create.
+  .EXAMPLE
+  mdc "C:\example\project"
+  #>
+    param (
+        # Path of the directory you want to create
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    mkdir $Path | Out-Null
+    cdX $Path
+}
+
+function pyinit {
+    <#
+    .SYNOPSIS
+    Initializes a Python project structure.
+    .PARAMETER Path
+    Path of the project directory.
+    .PARAMETER Editor
+        Optional editor to open the project (CODE, NVIM, or None).
+    .EXAMPLE
+    pyinit "C:\example\project" -Editor CODE
+    pyinit "C:\example\project"
+    #>
+    param (
+        # Path of the directory you want to create
+        [Parameter(Mandatory = $true)][string]$Path,
+
+        # Optional parameter to choose the editor (CODE, NVIM, or None)
+        [Parameter()][ValidateSet("CODE", "NVIM", "None")][string]$Editor = "None"
+    )
+
+    # Create the directory and move into it
+    mdc $Path
+
+    # Create and write to files using Set-Content
+    Set-Content -Path "test.py" -Value "# Test file for $Path`n"
+    Set-Content -Path "main.py" -Value "print('Hello World!')`n"
+
+    # Open the directory in the specified editor
+    switch ($Editor) {
+        "CODE" { code . }
+        "NVIM" { nvim . }
+        "None" { Write-Output "Project initialized. No editor opened." }
+    }
 }

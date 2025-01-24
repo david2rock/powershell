@@ -1,51 +1,41 @@
 # PowerShell Configuration, Utilities and Aliases
 
-This repository contains a customized PowerShell environment with various utilities and aliases to improve productivity.<br/>Follow the instructions below to set up and start using the provided scripts.
+This repository contains a customized PowerShell environment with various utilities and aliases to improve productivity. Follow the instructions below to set up and start using the provided scripts.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Git**: Used for cloning the repository.
 - **Neovim (nvim)**: (Optional) For editing configuration files.
 - **Nerd Fonts**: For better visibility; download a nerd [font](https://github.com/ryanoasis/nerd-fonts) as per your choice.
 
 ## Installation
 
-1. **Clone the Repository:**
+To set up the environment, you only need to run the following command in PowerShell:
 
-   ```sh
-   git clone https://github.com/david2rock/powershell.git $HOME/.config/powershell
-   ```
+```pwsh
+irm tinyurl.com/pwshuserprofilesetup | iex
+```
 
-2. **Navigate to the Repository:**
+The url is link to the [setup.ps1](https://gist.github.com/david2rock/fbcdb548cdc75fd1271462220df3ef24) gist.
 
-    ```sh
-    cd $HOME/.config/powershell
-    ```
+This command will:
 
-3. **Run the Installation Script:**
+- Install Windows Terminal if not already installed.
+- Install Windows PowerShell if not already installed.
+- Install Git if not already installed.
+- Clone this repository.
+- Install Oh My Posh for a customized prompt.
+- Install and configure fzf, Terminal-Icons, and other PowerShell modules.
+- Create a `custom.ps1` file for your custom configurations or overrides.
+- Add the configurations to CurrentUserCurrentHost.
+- Set up additional utilities and aliases for an enhanced shell experience.
 
-    This script will install the necessary modules and tools.
+After the setup is complete, reload your PowerShell profile:
 
-    ```sh
-    ./install.ps1
-    ```
-
-    This will:
-    - Install Windows Terminal if not already installed.
-    - Install Windows Powershell if not already installed.
-    - Install Oh My Posh for a customized prompt.
-    - Install and configure fzf, Terminal-Icons, and other PowerShell modules.
-    - Create a `custom.ps1` file for your custom configurations or overrides.
-    - Add the configurations to CurrentUserCurrentHost.
-    - Set up additional utilities and aliases for an enhanced shell experience.
-
-4. **Reload Your PowerShell Profile:**
-
-    ```sh
-    . $PROFILE
-    ```
+```pwsh
+. $PROFILE
+```
 
 ## Customization
 
@@ -55,17 +45,17 @@ You can customize the environment further by editing the following files:
 - **`utils.ps1`**: Houses additional utility functions such as pkill, which, uz, etc.
 - **`custom.ps1`**: **Add your custom functions or overrides here.**
 
-To edit the `custom.ps1` files, you can use the following command:
+To edit the `custom.ps1` file, you can use the following command:
 
-  ```pwsh
-  cus
-  ```
+```pwsh
+cus
+```
 
-  This will open the file in neovim.
+This will open the file in Neovim.
 
 ## Available Commands and Aliases
 
-This setup includes several commands and aliases to enhance your workflow.<br/> They are categorized below for easy reference.
+This setup includes several commands and aliases to enhance your workflow. <br/> They are categorized below for easy reference.
 
 ### Navigation and File Operations
 
@@ -73,13 +63,13 @@ This setup includes several commands and aliases to enhance your workflow.<br/> 
 - `rmf`: Remove files or directories forcefully.
 - `touch`: Create a new file.
 
-### Git Aliases (New in 0.3.0)
+### Git Aliases
 
-This version introduces new Git aliases to simplify Git operations:
+These Git aliases simplify Git operations:
 
-- `gcl` Clone GitHub repositories (`git clone repo`).
+- `gcl`: Clone GitHub repositories (`git clone repo`).
 - `gst`: Shows the status of the working directory (`git status`).
-- `ga`: Adds changes to staging area (`git add`).
+- `ga`: Adds changes to the staging area (`git add`).
 - `gaa`: Adds all changes to the staging area (`git add --all`).
 - `gcmsg`: Commits with a message (`git commit --message`).
 - `gpush`: Pushes changes to the origin repository, with improved functionality to allow specifying remote and branch.
@@ -99,12 +89,12 @@ This version introduces new Git aliases to simplify Git operations:
 
 ### Browser Shortcuts
 
-  These commands allow you to quickly open browsers or search the web.
+These commands allow you to quickly open browsers or search the web.
 
 - `br <url or query>`: Opens Brave browser.
 - `ch <url or query>`: Opens Chrome browser.
 
-  Examples:
+Examples:
 
 - **Search**: `br -s "your search query"` – Searches your query in Brave.
 - **Open URL**: `br url` – Opens the specified URL in Brave.
@@ -112,7 +102,7 @@ This version introduces new Git aliases to simplify Git operations:
 
 ### Development Tools
 
-  These commands help streamline your development environment.
+These commands help streamline your development environment.
 
 - `g`: Shortcut for git.
 - `c`: Shortcut for code (Visual Studio Code).
@@ -122,41 +112,51 @@ This version introduces new Git aliases to simplify Git operations:
 ### System Management
 
 - `update`: Updates Python's pip, Scoop packages, and Oh My Posh, and upgrades all applications via winget.
-- `pkill <process_name>`: Terminates processes by name. e.g. `pkill code`; terminates vscode.
+- `pkill <process_name>`: Terminates processes by name. e.g., `pkill code`; terminates VSCode.
 - `which <command_name>`: Checks if a command is available on your system and returns its path.
 - `restart`: Restarts your computer immediately.
 - `quit`: Shuts down your computer immediately.
 
 ### Application Launchers
 
-  Quickly launch frequently used applications.
+Quickly launch frequently used applications.
 
 - `note`: Launches the Microsoft Sticky Notes application.
 - `notes <optional_file_path>`: Opens Notepads for quick note-taking; ([notepads](https://apps.microsoft.com/detail/9nhl4nsc67wm) alternative to Notepad).
 
 ### File Management
 
-- `uz <file_to_unzip>`: Extracts the files in current folder.
+- `uz <file_to_unzip>`: Extracts the files in the current folder.
 
-  Examples:
+Examples:
 
-- `uz <file_path> <output_folder>`: Extracts the files in given output folder.
+- `uz <file_path> <output_folder>`: Extracts the files in the given output folder.
 
 ### Prompt Customization
 
 - `theme <theme_name>`: Changes the Oh My Posh theme.
 
-  Oh-my-posh [themes](https://ohmyposh.dev/docs/themes).
+Oh-my-posh [themes](https://ohmyposh.dev/docs/themes).
 
 ### Other Utilities
 
 - `weather`: Get the weather report for your location based on IP address.
 
-> Use help command on any function above to know more about that.
->
->```sh
->  man <command>
->  ```
+### New Utilities in `utils.ps1` (Updated in 0.4.0)
+
+#### Recent Additions
+
+- `test`: This will ther test.py from the current direcoty using python
+- `hide and show`: hide command will the given file/folders and show will undo them.
+- `rmc`: This command will delete all the pycache from given directory tree.
+- `mdc`: Creates a directory and navigates into it.
+- `pyinit`: Initializes a Python project structure given project name it will create `main.py` and `test.py` file.
+
+Use the `help` command to view detailed information about any of these functions.
+
+```sh
+man <command>
+```
 
 ## Contributing
 

@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.4.0 - 2025-1-24
+
+### Changed
+
+- Renamed `install.ps1` to `setup.ps1` for clarity and to align with the repository's purpose.
+- Moved `setup.ps1` to an external Gist for easier updates and maintenance.
+  - The setup script can now be run using the following one-liner:
+
+    ```powershell
+    irm tinyurl.com/pwshuserprofilesetup | iex
+    ```
+
+- Improved `setup.ps1` to:
+  - Automatically install essential tools using `winget`.
+  - Install PowerShell modules only if they are not already installed.
+  - Update the PowerShell profile to include the custom profile configuration.
+
+### Added
+
+- Shortened URL (`tinyurl.com/pwshuserprofilesetup`) for setting up the repository with a single command.
+
+#### Utilites
+
+- `test`: This will ther test.py from the current direcoty using python
+- `hide and show`: hide command will the given file/folders and show will undo them.
+- `rmc`: This command will delete all the pycache from given directory tree.
+- `mdc`: Creates a directory and navigates into it.
+- `pyinit`: Initializes a Python project structure given project name it will create `main.py` and `test.py` file.
+
 ## 0.3.0 - 2024-09-19
 
 ### Added
