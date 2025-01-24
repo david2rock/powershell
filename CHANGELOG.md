@@ -9,7 +9,7 @@
   - The setup script can now be run using the following one-liner:
 
     ```powershell
-    irm tinyurl.com/pwshuserprofilesetup | iex
+    irm tinyurl.com/pwshprofilesetup | iex
     ```
 
 - Improved `setup.ps1` to:
@@ -19,7 +19,7 @@
 
 ### Added
 
-- Shortened URL (`tinyurl.com/pwshuserprofilesetup`) for setting up the repository with a single command.
+- Shortened URL (`tinyurl.com/pwshprofilesetup`) for setting up the repository with a single command.
 
 #### Utilites
 

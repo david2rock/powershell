@@ -14,7 +14,7 @@ Before you begin, ensure you have the following installed:
 To set up the environment, you only need to run the following command in PowerShell:
 
 ```pwsh
-irm tinyurl.com/pwshuserprofilesetup | iex
+irm tinyurl.com/pwshprofilesetup | iex
 ```
 
 The url is link to the [setup.ps1](https://gist.github.com/david2rock/fbcdb548cdc75fd1271462220df3ef24) gist.
