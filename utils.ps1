@@ -290,7 +290,7 @@ function main {
     main
     This will execute `main.py` using Python in current directory.
   #>
-    python.exe main.py
+    python.exe main.py $args
 }
 
 function test {
@@ -301,7 +301,7 @@ function test {
     test
     This will execute `test.py` using Python in current directory.
   #>
-    python test.py
+    python test.py $args
 }
 
 # ----------- Hide ------------
